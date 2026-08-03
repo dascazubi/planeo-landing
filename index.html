@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Planeo — Próximamente</title>
+<style>
+  @font-face {
+    font-family: 'Nexa';
+    src: local('Nexa'), local('Montserrat');
+  }
+
+  :root {
+    --morado: #3C0078;
+    --naranja: #FF7437;
+    --gris: #363636;
+    --blanco: #FFFFFF;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Nexa', 'Montserrat', -apple-system, sans-serif;
+    background: var(--blanco);
+    color: var(--gris);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .stage {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .stage::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, var(--morado) 0%, var(--morado) 55%, var(--naranja) 155%);
+    opacity: 0.04;
+    z-index: 0;
+  }
+
+  .arrow-mark {
+    position: absolute;
+    top: 8%;
+    right: 10%;
+    width: 120px;
+    height: 120px;
+    opacity: 0.08;
+    z-index: 0;
+  }
+
+  .content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 40px;
+    max-width: 640px;
+  }
+
+  .wordmark {
+    font-size: clamp(48px, 9vw, 88px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--morado);
+    line-height: 1;
+    animation: rise 0.8s ease-out both;
+  }
+
+  .wordmark span {
+    color: var(--naranja);
+  }
+
+  .tagline {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--gris);
+    letter-spacing: 0.01em;
+    animation: rise 0.8s ease-out 0.15s both;
+  }
+
+  .divider {
+    width: 48px;
+    height: 3px;
+    background: var(--naranja);
+    margin: 32px auto;
+    animation: expand 0.6s ease-out 0.35s both;
+  }
+
+  .status {
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--morado);
+    opacity: 0.7;
+    animation: rise 0.8s ease-out 0.5s both;
+  }
+
+  .contact {
+    margin-top: 28px;
+    font-size: 15px;
+    color: var(--gris);
+    opacity: 0.6;
+    animation: rise 0.8s ease-out 0.65s both;
+  }
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes expand {
+    from { width: 0; }
+    to { width: 48px; }
+  }
+</style>
+</head>
+<body>
+  <div class="stage">
+    <div class="content">
+      <div class="wordmark">Plane<span>o</span></div>
+      <p class="tagline">Planeación financiera para PYMEs en Latam</p>
+      <div class="divider"></div>
+      <p class="status">Sitio en construcción</p>
+      <p class="contact">planeolatam.com</p>
+    </div>
+  </div>
+</body>
+</html>
