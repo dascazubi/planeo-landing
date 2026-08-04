@@ -122,12 +122,17 @@
 
   #mobile-menu{
     position:fixed; inset:0; background:var(--purple); z-index:105;
-    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:32px;
-    transform:translateY(-100%); transition:transform .3s ease;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:28px;
+    transform:translateY(-100%); visibility:hidden; pointer-events:none;
+    transition:transform .3s ease, visibility 0s linear .3s;
   }
-  #mobile-menu.open{transform:translateY(0);}
-  #mobile-menu a{font-family:var(--display); font-weight:800; font-size:28px; color:var(--white);}
+  #mobile-menu.open{transform:translateY(0); visibility:visible; pointer-events:auto; transition:transform .3s ease, visibility 0s linear 0s;}
+  #mobile-menu a{font-family:var(--display); font-weight:800; font-size:26px; color:var(--white);}
   #mobile-menu a:hover{color:var(--orange);}
+  #mobile-menu .mm-cta{
+    margin-top:8px; background:var(--orange); color:var(--white); font-family:var(--sans); font-weight:700;
+    font-size:15px; padding:14px 30px; border-radius:999px;
+  }
 
   /* ---------- HERO ---------- */
   #hero{
@@ -315,15 +320,18 @@
     .process-step::after{content:none;}
     .stats-grid{grid-template-columns:1fr 1fr;}
     .footer-grid{grid-template-columns:1fr 1fr;}
+    .nav-links{display:none;}
+    .nav-cta .btn-primary{display:none;}
+    .nav-burger{display:flex;}
+    #nav .wrap{height:78px;}
+    .nav-logo{height:36px;}
   }
   @media (max-width: 720px){
-    .nav-links{display:none;}
-    .nav-burger{display:flex;}
-    #nav .wrap{height:74px;}
-    .nav-logo{height:32px;}
     .wrap{padding:0 22px;}
     .section-pad{padding:76px 0;}
-    #hero{padding:132px 0 80px;}
+    #nav .wrap{height:70px;}
+    .nav-logo{height:30px;}
+    #hero{padding:126px 0 80px;}
     .problem-grid{grid-template-columns:1fr;}
     .services-grid{grid-template-columns:1fr;}
     .process-row{grid-template-columns:1fr;}
@@ -364,6 +372,7 @@
   <a href="#diferenciadores">Por qué nosotros</a>
   <a href="#logros">Logros</a>
   <a href="#cta-final">Contacto</a>
+  <a href="https://outlook.office.com/bookwithme/user/b0319593e560426a8f1801a99002c389@planeolatam.com/meetingtype/y064qWxzQ0CIkDo9chfwjA2?anonymous&amp;ismsaljsauthenabled&amp;ep=mlink" target="_blank" rel="noopener noreferrer" class="mm-cta">Agenda una consulta</a>
 </div>
 
 <!-- ================= HERO ================= -->
