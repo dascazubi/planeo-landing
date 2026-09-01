@@ -34,9 +34,9 @@
   .eyebrow{font-family:var(--mono); font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--orange-dark); display:flex; align-items:center; gap:10px; margin-bottom:14px;}
   .eyebrow::before{content:''; width:22px; height:2px; background:var(--orange);}
   .eyebrow.on-dark{color:var(--orange);}
-  .slide-head{max-width:820px; margin-bottom:24px;}
-  .slide-head h2{font-size:32px; line-height:1.12;}
-  .slide-head p{font-size:13.5px; color:var(--gray-3); margin-top:10px; max-width:640px;}
+  .slide-head{max-width:820px; margin-bottom:30px;}
+  .slide-head h2{font-size:38px; line-height:1.1;}
+  .slide-head p{font-size:15px; color:var(--gray-3); margin-top:10px; max-width:640px;}
   .slide.on-dark .slide-head p{color:rgba(255,255,255,0.6);}
 
   /* ---------- nav bar ---------- */
@@ -49,37 +49,40 @@
   .slide-counter{font-family:var(--mono); font-size:12px; color:rgba(255,255,255,0.5); letter-spacing:0.04em; min-width:52px; text-align:center;}
 
   /* ---------- editorial items (num + título + texto) ---------- */
-  .ed-num{font-family:var(--display); font-size:24px; font-weight:800; color:var(--orange); line-height:1; margin-bottom:6px;}
-  .ed-item .flag{display:flex; align-items:center; gap:6px; margin-bottom:6px;}
+  .ed-num{font-family:var(--display); font-size:27px; font-weight:800; color:var(--orange); line-height:1; margin-bottom:7px;}
+  .ed-item .flag{display:flex; align-items:center; gap:6px; margin-bottom:7px;}
   .ed-item .flag .dot{width:6px; height:6px; min-width:6px; border-radius:50%; background:var(--red); display:inline-block;}
   .ed-item .flag.amber .dot{background:var(--yellow);}
-  .ed-item .flag-label{font-family:var(--mono); font-size:9px; letter-spacing:0.06em; text-transform:uppercase; color:var(--gray-4);}
-  .ed-item h3{font-size:14.5px; color:var(--purple); margin-bottom:5px; font-weight:800;}
-  .ed-item p{font-size:11.5px; color:var(--gray-3); line-height:1.5;}
+  .ed-item .flag-label{font-family:var(--mono); font-size:9.5px; letter-spacing:0.06em; text-transform:uppercase; color:var(--gray-4);}
+  .ed-item h3{font-size:16px; color:var(--purple); margin-bottom:6px; font-weight:800;}
+  .ed-item p{font-size:13px; color:var(--gray-3); line-height:1.55;}
   .slide.on-dark .ed-item h3{color:var(--white);}
   .slide.on-dark .ed-item p{color:rgba(255,255,255,0.58);}
   .slide.on-dark .ed-item .flag-label{color:rgba(255,255,255,0.4);}
 
   /* ---------- grids por slide ---------- */
-  .grid-2x2{display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; gap:22px 40px; flex:1;}
-  .grid-3x2{display:grid; grid-template-columns:1fr 1fr 1fr; grid-template-rows:1fr 1fr; gap:22px 34px; flex:1;}
-  .row-divider{border-top:1px solid var(--gray-6); padding-top:16px;}
+  .grid-2x2{display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; gap:28px 48px; flex:1;}
+  .grid-3x2{display:grid; grid-template-columns:1fr 1fr 1fr; grid-template-rows:1fr 1fr; gap:26px 40px; flex:1;}
+  .row-divider{border-top:1px solid var(--gray-6); padding-top:18px;}
   .slide.on-dark .row-divider{border-top-color:rgba(255,255,255,0.16);}
 
   /* ---------- COVER ---------- */
   #s-cover{justify-content:center; background:linear-gradient(155deg, var(--purple) 0%, var(--purple-deep) 62%, #1c0038 100%); color:var(--white);}
   .cover-logo{height:42px; margin-bottom:36px; align-self:flex-start;}
-  .cover-title{font-size:52px; line-height:1.02; margin-bottom:16px; color:var(--white);}
+  .cover-title{font-size:58px; line-height:1.02; margin-bottom:18px; color:var(--white);}
   .cover-title em{font-style:italic; color:var(--orange); font-weight:800;}
-  .cover-tag{font-family:var(--mono); font-size:13px; letter-spacing:0.03em; color:rgba(255,255,255,0.55); margin-bottom:22px;}
-  .cover-sub{font-size:14.5px; font-weight:300; color:rgba(255,255,255,0.75); max-width:560px; line-height:1.65;}
+  .cover-tag{font-family:var(--mono); font-size:14px; letter-spacing:0.03em; color:rgba(255,255,255,0.55); margin-bottom:24px;}
+  .cover-sub{font-size:16px; font-weight:300; color:rgba(255,255,255,0.75); max-width:580px; line-height:1.65;}
   .cover-meta{font-family:var(--mono); font-size:11px; color:rgba(255,255,255,0.4); position:absolute; bottom:40px; left:68px;}
 
   /* ---------- qué es planeo — cita ---------- */
-  .feature-quote{font-family:var(--display); font-size:23px; font-weight:800; color:var(--white); line-height:1.3; max-width:1000px; margin-bottom:10px;}
+  .feature-quote{font-family:var(--display); font-size:29px; font-weight:800; color:var(--white); line-height:1.32; max-width:1050px; margin-bottom:12px;}
   .feature-quote em{color:var(--orange); font-style:italic;}
-  .feature-sub{font-size:12.5px; color:rgba(255,255,255,0.55); max-width:600px; margin-bottom:26px; font-weight:300;}
-  .pillars-row{display:grid; grid-template-columns:1fr 1fr 1fr; gap:0 32px; flex:1; align-content:start;}
+  .feature-sub{font-size:15px; color:rgba(255,255,255,0.55); max-width:600px; margin-bottom:40px; font-weight:300;}
+  .pillars-row{display:grid; grid-template-columns:1fr 1fr 1fr; gap:0 44px; flex:1; align-content:start;}
+  .pillars-row .ed-num{font-size:32px;}
+  .pillars-row .ed-item h3{font-size:19px;}
+  .pillars-row .ed-item p{font-size:14.5px; line-height:1.6;}
 
   /* ---------- score / dashboard ---------- */
   #s-score .score-inner{display:grid; grid-template-columns:1.1fr 0.9fr; gap:44px; flex:1; min-height:0;}
@@ -104,33 +107,76 @@
   .dash-foot{font-family:var(--mono); font-size:8.5px; color:rgba(255,255,255,0.4); text-align:center; padding-top:10px; margin-top:10px; border-top:1px solid rgba(255,255,255,0.12);}
 
   /* ---------- diferenciadores ---------- */
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch;}
   .diff-table{width:100%; border-collapse:collapse;}
-  .diff-table thead th{font-family:var(--mono); font-size:9.5px; letter-spacing:0.05em; text-transform:uppercase; color:var(--gray-4); text-align:left; padding:0 18px 10px 0; border-bottom:2px solid var(--text); font-weight:500;}
+  .diff-table thead th{font-family:var(--mono); font-size:11.5px; letter-spacing:0.05em; text-transform:uppercase; color:var(--gray-4); text-align:left; padding:0 20px 13px 0; border-bottom:2px solid var(--text); font-weight:500;}
   .diff-table thead th.planeo-h{color:var(--orange-dark); font-weight:700;}
-  .diff-table tbody td{padding:11px 18px 11px 0; font-size:11.5px; color:var(--gray-3); border-bottom:1px solid var(--gray-6);}
+  .diff-table tbody td{padding:17px 20px 17px 0; font-size:14px; color:var(--gray-3); border-bottom:1px solid var(--gray-6); white-space:nowrap;}
   .diff-table tbody td:first-child{font-weight:700; color:var(--text);}
-  .diff-table tbody td.planeo-cell{color:var(--purple); font-family:var(--mono); font-weight:600; font-size:10.5px; letter-spacing:0.01em;}
+  .diff-table tbody td.planeo-cell{color:var(--purple); font-family:var(--mono); font-weight:600; font-size:12.5px; letter-spacing:0.01em;}
   .diff-table tbody tr:last-child td{border-bottom:none;}
 
   /* ---------- fundador ---------- */
-  .founder-row{display:grid; grid-template-columns:200px 1fr; gap:40px; align-items:start; flex:1; min-height:0;}
-  .founder-photo{width:180px; height:180px; border-radius:50%; object-fit:cover; border:3px solid var(--purple-light);}
-  .founder-name{font-size:19px; color:var(--purple); font-weight:800; margin-bottom:3px;}
-  .founder-role{font-family:var(--mono); font-size:10.5px; color:var(--orange-dark); letter-spacing:0.03em; text-transform:uppercase; margin-bottom:14px;}
-  .founder-bio p{font-size:12px; color:var(--gray-3); line-height:1.55; margin-bottom:9px; max-width:820px;}
-  .founder-meta{font-family:var(--mono); font-size:10px; color:var(--gray-4); letter-spacing:0.02em; margin-top:10px; line-height:1.7;}
-  .founder-link{display:inline-flex; align-items:center; gap:5px; margin-top:12px; font-family:var(--mono); font-size:11px; color:var(--orange-dark); font-weight:500;}
+  .founder-row{display:grid; grid-template-columns:210px 1fr; gap:48px; align-items:start; flex:1; min-height:0;}
+  .founder-photo{width:200px; height:200px; border-radius:50%; object-fit:cover; border:3px solid var(--purple-light);}
+  .founder-name{font-size:23px; color:var(--purple); font-weight:800; margin-bottom:4px;}
+  .founder-role{font-family:var(--mono); font-size:12px; color:var(--orange-dark); letter-spacing:0.03em; text-transform:uppercase; margin-bottom:18px;}
+  .founder-bio p{font-size:14.5px; color:var(--gray-3); line-height:1.65; margin-bottom:13px; max-width:820px;}
+  .founder-meta{font-family:var(--mono); font-size:11.5px; color:var(--gray-4); letter-spacing:0.02em; margin-top:12px; line-height:1.8;}
+  .founder-link{display:inline-flex; align-items:center; gap:5px; margin-top:16px; font-family:var(--mono); font-size:12.5px; color:var(--orange-dark); font-weight:500;}
   .founder-link:hover{text-decoration:underline;}
 
   /* ---------- cierre ---------- */
   #s-cierre{justify-content:center; align-items:center; text-align:center; background:var(--purple-deep); color:var(--white);}
   #s-cierre .eyebrow{justify-content:center;}
-  #s-cierre h2{font-size:38px; line-height:1.15; margin-bottom:14px; color:var(--white);}
+  #s-cierre h2{font-size:44px; line-height:1.15; margin-bottom:16px; color:var(--white);}
   #s-cierre h2 em{color:var(--orange); font-style:italic;}
-  #s-cierre p{color:rgba(255,255,255,0.6); font-size:14px; font-weight:300; margin-bottom:6px;}
+  #s-cierre p{color:rgba(255,255,255,0.6); font-size:15.5px; font-weight:300; margin-bottom:6px;}
   #s-cierre .contact-line{font-family:var(--mono); font-size:12px; color:rgba(255,255,255,0.7); margin-top:22px;}
   #s-cierre .contact-line a{color:var(--orange); text-decoration:underline; text-underline-offset:3px;}
   #s-cierre .cierre-foot{position:absolute; bottom:28px; left:0; right:0; text-align:center; font-family:var(--mono); font-size:10px; color:rgba(255,255,255,0.35);}
+
+  /* ---------- responsive / celular ---------- */
+  @media (max-width: 820px){
+    html,body{ height:auto; overflow:auto; }
+    .deck{ position:static; height:auto; min-height:100vh; display:block; padding:20px 0 84px; }
+    .slide-viewport{ width:100%; max-width:100%; height:auto; box-shadow:none; }
+    .slide{ position:relative; inset:auto; width:100%; height:auto; min-height:auto; padding:32px 22px; }
+
+    .eyebrow{font-size:10.5px;}
+    .slide-head{margin-bottom:22px;}
+    .slide-head h2{font-size:25px;}
+    .slide-head p{font-size:14px;}
+
+    .cover-title{font-size:32px;}
+    .cover-sub{font-size:14.5px;}
+    .cover-meta{position:static; margin-top:32px;}
+    .slide{min-height:calc(100vh - 104px);}
+    #s-cierre .cierre-foot{position:static; margin-top:24px;}
+
+    .feature-quote{font-size:20px;}
+    .feature-sub{margin-bottom:26px;}
+
+    .grid-2x2, .grid-3x2, .pillars-row{grid-template-columns:1fr !important; gap:22px !important;}
+    .pillars-row .ed-num{font-size:26px;}
+    .pillars-row .ed-item h3{font-size:16.5px;}
+    .pillars-row .ed-item p{font-size:13.5px;}
+
+    #s-score .score-inner{grid-template-columns:1fr; gap:28px;}
+    #s-score h2{font-size:24px !important;}
+
+    .diff-table tbody td{white-space:normal;}
+
+    .founder-row{grid-template-columns:1fr; gap:22px; text-align:left;}
+    .founder-photo{width:120px; height:120px;}
+
+    #s-cierre h2{font-size:28px;}
+
+    .deck-nav{padding:0 14px; gap:12px;}
+    .deck-nav .nav-logo{display:none;}
+    .deck-nav button{font-size:12px; padding:7px 12px;}
+    .slide-counter{font-size:11px; min-width:auto;}
+  }
 
   /* ---------- impresión / exportar a PDF ---------- */
   @media print{
@@ -264,28 +310,28 @@
       <div class="score-inner">
         <div>
           <div class="eyebrow on-dark">NUESTRO SCORE</div>
-          <h2 style="font-size:26px; line-height:1.15; margin-bottom:8px; color:var(--white);">Medimos la salud financiera, no solo la prometemos.</h2>
-          <p style="font-size:12.5px; color:rgba(255,255,255,0.6); max-width:480px;">Cada trimestre calculamos el Planeo Score: metodología propia para medir, con los números reales del negocio, cómo evoluciona en cuatro dimensiones.</p>
+          <h2 style="font-size:30px; line-height:1.15; margin-bottom:12px; color:var(--white);">Medimos la salud financiera, no solo la prometemos.</h2>
+          <p style="font-size:14.5px; color:rgba(255,255,255,0.6); max-width:480px;">Cada trimestre calculamos el Planeo Score: metodología propia para medir, con los números reales del negocio, cómo evoluciona en cuatro dimensiones.</p>
           <div class="grid-2x2 axes-grid">
             <div class="ed-item row-divider">
-              <div class="ed-num" style="font-size:20px;">01</div>
-              <h3 style="font-size:13px;">Liquidez</h3>
-              <p style="font-size:10.5px;">¿Puede cubrir sus obligaciones de corto plazo sin sobresaltos?</p>
+              <div class="ed-num" style="font-size:24px;">01</div>
+              <h3 style="font-size:15.5px;">Liquidez</h3>
+              <p style="font-size:12.5px;">¿Puede cubrir sus obligaciones de corto plazo sin sobresaltos?</p>
             </div>
             <div class="ed-item row-divider">
-              <div class="ed-num" style="font-size:20px;">02</div>
-              <h3 style="font-size:13px;">Rentabilidad</h3>
-              <p style="font-size:10.5px;">¿Crecer se traduce en ganar más?</p>
+              <div class="ed-num" style="font-size:24px;">02</div>
+              <h3 style="font-size:15.5px;">Rentabilidad</h3>
+              <p style="font-size:12.5px;">¿Crecer se traduce en ganar más?</p>
             </div>
             <div class="ed-item row-divider">
-              <div class="ed-num" style="font-size:20px;">03</div>
-              <h3 style="font-size:13px;">Riesgo Estructural</h3>
-              <p style="font-size:10.5px;">¿Qué tan frágil es el negocio, más allá de la rentabilidad de hoy?</p>
+              <div class="ed-num" style="font-size:24px;">03</div>
+              <h3 style="font-size:15.5px;">Riesgo Estructural</h3>
+              <p style="font-size:12.5px;">¿Qué tan frágil es el negocio, más allá de la rentabilidad de hoy?</p>
             </div>
             <div class="ed-item row-divider">
-              <div class="ed-num" style="font-size:20px;">04</div>
-              <h3 style="font-size:13px;">Eficiencia</h3>
-              <p style="font-size:10.5px;">¿Genera más valor por recurso usado, sin depender solo del dueño?</p>
+              <div class="ed-num" style="font-size:24px;">04</div>
+              <h3 style="font-size:15.5px;">Eficiencia</h3>
+              <p style="font-size:12.5px;">¿Genera más valor por recurso usado, sin depender solo del dueño?</p>
             </div>
           </div>
         </div>
@@ -330,6 +376,7 @@
         <div class="eyebrow">POR QUÉ PLANEO</div>
         <h2>No es un contador. Tampoco el CFO interno que todavía no se puede pagar.</h2>
       </div>
+      <div class="table-scroll">
       <table class="diff-table">
         <thead>
           <tr>
@@ -378,6 +425,7 @@
           </tr>
         </tbody>
       </table>
+      </div>
     </section>
 
     <!-- ============ SLIDE 7 — QUIÉN LIDERA PLANEO ============ -->
@@ -486,7 +534,12 @@
   }, {passive:true});
 
   // escalar el deck para que quepa en cualquier ventana, manteniendo 16:9
+  var mobileQuery = window.matchMedia('(max-width: 820px)');
   function fitDeck(){
+    if(mobileQuery.matches){
+      viewport.style.transform = 'none';
+      return;
+    }
     var navH = 58;
     var vw = window.innerWidth;
     var vh = window.innerHeight - navH;
