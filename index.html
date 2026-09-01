@@ -183,12 +183,19 @@
     background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:16px;
   }
   .dash-card .k-label{font-family:var(--mono); font-size:10px; letter-spacing:0.05em; color:rgba(255,255,255,0.42); text-transform:uppercase; margin-bottom:8px;}
-  .dash-card .k-value{font-family:var(--mono); font-size:24px; font-weight:500; color:var(--white); display:flex; align-items:baseline; gap:6px;}
+  .dash-card .k-value{font-family:var(--mono); font-size:24px; font-weight:500; color:var(--white); display:flex; align-items:baseline; gap:6px; flex-wrap:wrap;}
   .dash-card .k-tag{
     font-family:var(--mono); font-size:9.5px; padding:2px 7px; border-radius:20px; letter-spacing:0.04em;
   }
   .tag-green{background:rgba(46,125,50,0.25); color:#7FD68C;}
   .tag-amber{background:rgba(245,166,35,0.22); color:#FFC96B;}
+  .tag-red{background:rgba(198,40,40,0.25); color:#FF8A80;}
+  .dash-total{padding-bottom:18px; margin-bottom:16px; border-bottom:1px solid rgba(255,255,255,0.08); text-align:center;}
+  .dash-total .k-label{font-family:var(--mono); font-size:10px; letter-spacing:0.05em; color:rgba(255,255,255,0.42); text-transform:uppercase; margin-bottom:6px;}
+  .dash-total .k-value{font-family:var(--mono); font-size:58px; font-weight:600; color:var(--white); line-height:1; justify-content:center;}
+  .k-delta{font-family:var(--mono); font-size:11px; display:inline-flex; align-items:center; gap:4px; margin-top:10px; padding:4px 12px; border-radius:20px; letter-spacing:0.02em;}
+  .k-delta-up{background:rgba(46,125,50,0.18); color:#7FD68C;}
+  .k-delta-down{background:rgba(198,40,40,0.18); color:#FF8A80;}
   .dash-card.wide{grid-column:1 / -1;}
   .spark{display:flex; align-items:flex-end; gap:4px; height:44px; margin-top:10px;}
   .spark i{flex:1; background:var(--orange); border-radius:2px 2px 0 0; opacity:0.85;}
@@ -234,6 +241,7 @@
 
   /* ---------- SERVICIOS ---------- */
   .services-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:20px;}
+  .score-grid{display:grid; grid-template-columns:repeat(4, 1fr); gap:20px;}
   .svc-card{
     background:var(--white); border:1px solid var(--gray-6); border-radius:16px; padding:30px 26px;
     transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
@@ -324,6 +332,7 @@
     .problem-grid{grid-template-columns:repeat(2,1fr);}
     .pillars3{grid-template-columns:1fr;}
     .services-grid{grid-template-columns:repeat(2,1fr);}
+    .score-grid{grid-template-columns:repeat(2,1fr);}
     .process-row{grid-template-columns:repeat(2,1fr); row-gap:44px;}
     .process-step::after{content:none;}
     .stats-grid{grid-template-columns:1fr 1fr;}
@@ -342,6 +351,7 @@
     #hero{padding:126px 0 80px;}
     .problem-grid{grid-template-columns:1fr;}
     .services-grid{grid-template-columns:1fr;}
+    .score-grid{grid-template-columns:1fr;}
     .process-row{grid-template-columns:1fr;}
     .stats-grid{grid-template-columns:1fr;}
     .footer-grid{grid-template-columns:1fr; gap:30px;}
@@ -362,6 +372,7 @@
     <ul class="nav-links">
       <li><a href="#servicios">Servicios</a></li>
       <li><a href="#proceso">Cómo trabajamos</a></li>
+      <li><a href="#score-planeo">Nuestro Score</a></li>
       <li><a href="#diferenciadores">Por qué nosotros</a></li>
       <li><a href="#logros">Logros</a></li>
     </ul>
@@ -377,6 +388,7 @@
 <div id="mobile-menu">
   <a href="#servicios">Servicios</a>
   <a href="#proceso">Cómo trabajamos</a>
+  <a href="#score-planeo">Nuestro Score</a>
   <a href="#diferenciadores">Por qué nosotros</a>
   <a href="#logros">Logros</a>
   <a href="#cta-final">Contacto</a>
@@ -387,9 +399,9 @@
 <section id="hero">
   <div class="wrap hero-grid">
     <div>
-      <div class="eyebrow on-dark">Más liquidez hoy · Más valor mañana</div>
+      <div class="eyebrow on-dark">CFO EXTERNO PARA PYMES · LATAM</div>
       <h1 class="hero-title">El CFO que tu negocio necesita,<br>sin el costo de uno <em>a tiempo completo.</em></h1>
-      <p class="hero-sub">Ayudamos a empresas en crecimiento a mejorar su liquidez y aumentar el valor de su negocio, con mejores decisiones financieras.</p>
+      <p class="hero-sub">Planeo es el socio financiero estratégico que transforma el back office de tu empresa — combinando 30+ años de experiencia con tecnología accesible, para que dejes de apagar incendios y empieces a pensar adelante.</p>
       <div class="hero-ctas">
         <a href="https://outlook.office.com/bookwithme/user/b0319593e560426a8f1801a99002c389@planeolatam.com/meetingtype/y064qWxzQ0CIkDo9chfwjA2?anonymous&amp;ismsaljsauthenabled&amp;ep=mlink" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Agenda una consulta gratuita <span class="btn-arrow">→</span></a>
         <a href="#servicios" class="btn btn-ghost on-dark">Ver servicios</a>
@@ -403,27 +415,33 @@
     <div class="reveal" id="dash-wrap">
       <div class="dash">
         <div class="dash-head">
-          <span class="title">Panel financiero · en vivo</span>
+          <span class="title">Nuestro Score · en vivo</span>
           <div class="dot-row"><span></span><span></span><span></span></div>
+        </div>
+        <div class="dash-total">
+          <div class="k-label">Valor Empresarial</div>
+          <div class="k-value" data-count="70">0</div>
+          <div class="k-delta k-delta-up">▲ +6 vs. trimestre anterior</div>
         </div>
         <div class="dash-cards">
           <div class="dash-card">
-            <div class="k-label">Margen EBITDA</div>
-            <div class="k-value" data-count="34.2" data-suffix="%">0%<span class="k-tag tag-green">En meta</span></div>
+            <div class="k-label">Liquidez</div>
+            <div class="k-value" data-count="84">0<span class="k-tag tag-green">Sólida</span></div>
           </div>
           <div class="dash-card">
-            <div class="k-label">ROE</div>
-            <div class="k-value" data-count="18.7" data-suffix="%">0%<span class="k-tag tag-green">Óptimo</span></div>
+            <div class="k-label">Rentabilidad</div>
+            <div class="k-value" data-count="71">0<span class="k-tag tag-amber">Estable</span></div>
           </div>
-          <div class="dash-card wide">
-            <div class="k-label">Flujo de caja libre · últimos 6 meses</div>
-            <div class="spark">
-              <i style="height:38%"></i><i style="height:52%"></i><i style="height:44%"></i>
-              <i style="height:68%"></i><i style="height:60%"></i><i style="height:86%"></i>
-            </div>
+          <div class="dash-card">
+            <div class="k-label">Riesgo Estructural</div>
+            <div class="k-value" data-count="58">0<span class="k-tag tag-red">Vigilar</span></div>
+          </div>
+          <div class="dash-card">
+            <div class="k-label">Eficiencia</div>
+            <div class="k-value" data-count="81">0<span class="k-tag tag-green">Sólida</span></div>
           </div>
         </div>
-        <div class="dash-foot">Actualizado automáticamente · sin hojas de cálculo sueltas</div>
+        <div class="dash-foot">Escala 0-100 · se actualiza cada trimestre</div>
       </div>
     </div>
   </div>
@@ -433,27 +451,27 @@
 <section id="problema" class="section-pad">
   <div class="wrap">
     <div class="eyebrow reveal">EL PROBLEMA</div>
-    <p class="problem-intro reveal">La mayoría de las PYMEs no fracasan por falta de ventas. Fracasan porque gestionan su liquidez y el valor de su negocio por separado — o no los gestionan en absoluto.</p>
+    <p class="problem-intro reveal">La mayoría de las PYMEs no fracasan por falta de ventas. Fracasan porque <strong>toman decisiones importantes sin visibilidad financiera real</strong> — y para cuando el problema es evidente en la caja, ya es tarde para corregirlo.</p>
     <div class="problem-grid reveal">
       <div class="problem-card">
-        <div class="flag"><span class="dot"></span><span class="flag-label">Liquidez</span></div>
-        <h3>Cero visibilidad de flujo de caja</h3>
-        <p>Sin proyección real, cada decisión de pago o cobro se toma a ciegas.</p>
+        <div class="flag"><span class="dot"></span><span class="flag-label">En riesgo</span></div>
+        <h3>Cero visión de mediano plazo</h3>
+        <p>Sin proyecciones confiables, cada decisión de inversión o contratación se convierte en una apuesta.</p>
       </div>
       <div class="problem-card">
-        <div class="flag"><span class="dot"></span><span class="flag-label">Liquidez</span></div>
-        <h3>Cobras a plazo, pagas de contado</h3>
-        <p>El desfase entre cuándo entra y cuándo sale el dinero ahoga la operación, aunque las ventas vayan bien.</p>
+        <div class="flag"><span class="dot"></span><span class="flag-label">En riesgo</span></div>
+        <h3>Apagando incendios</h3>
+        <p>El equipo directivo reacciona a los problemas de caja en vez de anticiparlos con meses de anticipación.</p>
       </div>
       <div class="problem-card">
-        <div class="flag amber"><span class="dot"></span><span class="flag-label">Valor</span></div>
-        <h3>No sabes cuánto vale tu empresa</h3>
-        <p>Decisiones de socio, venta o sucesión se toman sin un número de referencia real.</p>
+        <div class="flag amber"><span class="dot"></span><span class="flag-label">A monitorear</span></div>
+        <h3>Datos dispersos</h3>
+        <p>La información vive en hojas de cálculo desconectadas entre sí. Nunca hay una sola fuente de verdad.</p>
       </div>
       <div class="problem-card">
-        <div class="flag amber"><span class="dot"></span><span class="flag-label">Valor</span></div>
-        <h3>Crecer no siempre es construir valor</h3>
-        <p>Facturar más cada año no garantiza que tu negocio valga más — sin gestión, puede ser lo contrario.</p>
+        <div class="flag amber"><span class="dot"></span><span class="flag-label">A monitorear</span></div>
+        <h3>Talento senior fuera de alcance</h3>
+        <p>Un CFO de tiempo completo cuesta lo que una PYME en crecimiento todavía no puede pagar.</p>
       </div>
     </div>
   </div>
@@ -464,12 +482,12 @@
   <div class="wrap">
     <div class="section-head reveal">
       <div class="eyebrow">QUÉ ES PLANEO</div>
-      <h2>La firma que opera un sistema para mejorar tu liquidez y el valor de tu negocio, a la vez.</h2>
+      <h2>El CFO externo que combina experiencia de alto nivel con tecnología accesible.</h2>
     </div>
 
     <div class="positioning-card reveal">
-      <p class="pquote">"Planeo no gestiona tu contabilidad. Opera un sistema que mueve dos indicadores al mismo tiempo — cuánto dinero tienes hoy, y cuánto vale lo que estás construyendo — con la experiencia de un CFO de alto perfil, sin ese costo fijo."</p>
-      <p class="psub">Un solo sistema, dos resultados: más liquidez hoy, más valor mañana.</p>
+      <p class="pquote">"Para el dueño de PYME que necesita <em>claridad financiera y crecimiento sostenible</em>, Planeo es el socio estratégico que transforma el back office financiero — sin el costo de un CFO a tiempo completo."</p>
+      <p class="psub">Planeo no es un servicio de contabilidad. Es un aliado de negocios con visión financiera integral.</p>
     </div>
 
     <div class="pillars3 reveal">
@@ -498,7 +516,7 @@
     <div class="section-head reveal">
       <div class="eyebrow">SERVICIOS</div>
       <h2>Seis formas de empezar. Un solo destino: tu CFO Externo.</h2>
-      <p>CFO Externo es el sistema completo: los seis funcionando juntos, de forma continua, para sostener tu liquidez y el valor de tu negocio a la vez. No tienes que empezar por ahí — cada uno también se contrata por separado, para resolver primero el dolor más urgente.</p>
+      <p>Cada uno se contrata por separado y resuelve un dolor específico — juntos construyen la dirección financiera continua de tu negocio.</p>
     </div>
     <div class="services-grid reveal">
       <div class="svc-card">
@@ -568,14 +586,51 @@
       <div class="process-step">
         <div class="step-num">04</div>
         <h3>Acompañamiento continuo</h3>
-        <p>Ajustamos el rumbo contigo, mes a mes, mientras tu negocio crece y las condiciones cambian.</p>
+        <p>Ajustamos el rumbo contigo, mes a mes, mientras tu negocio crece y las condiciones cambian — con el Planeo Score midiendo el progreso cada trimestre.</p>
       </div>
     </div>
   </div>
 </section>
 
+<!-- ================= SCORE PLANEO ================= -->
+<section id="score-planeo" class="section-pad">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">PLANEO SCORE</div>
+      <h2>Medimos tu salud financiera, no solo la prometemos.</h2>
+      <p>Cada trimestre calculamos el Planeo Score: nuestra metodología propia para medir, con tus propios números, cómo evoluciona tu negocio en cuatro dimensiones — no es una percepción, es un cálculo.</p>
+    </div>
+    <div class="score-grid reveal">
+      <div class="svc-card">
+        <div class="svc-num">01</div>
+        <h3>Liquidez</h3>
+        <p>¿Puedes cubrir tus obligaciones de corto plazo sin sobresaltos?</p>
+      </div>
+      <div class="svc-card">
+        <div class="svc-num">02</div>
+        <h3>Rentabilidad</h3>
+        <p>¿Crecer se traduce en ganar más?</p>
+      </div>
+      <div class="svc-card">
+        <div class="svc-num">03</div>
+        <h3>Riesgo Estructural</h3>
+        <p>¿Qué tan frágil es el negocio, más allá de la rentabilidad de hoy?</p>
+      </div>
+      <div class="svc-card">
+        <div class="svc-num">04</div>
+        <h3>Eficiencia y Transferibilidad</h3>
+        <p>¿Tu negocio genera más valor por cada recurso que usa, sin depender solo de ti?</p>
+      </div>
+    </div>
+    <div class="positioning-card reveal" style="margin-top:20px; margin-bottom:0;">
+      <p class="pquote">Los cuatro ejes se combinan en un solo número: tu <em>Valor Empresarial</em> — la cifra que resume, trimestre a trimestre, si tu negocio está mejorando de verdad.</p>
+      <p class="psub">Medimos una línea base en tus primeros 30 días con nosotros, y la volvemos a calcular cada trimestre — así se ve, en la práctica, "más liquidez hoy, más valor mañana".</p>
+    </div>
+  </div>
+</section>
+
 <!-- ================= POR QUÉ NOSOTROS ================= -->
-<section id="diferenciadores" class="section-pad">
+<section id="diferenciadores" class="section-pad band-light">
   <div class="wrap">
     <div class="section-head reveal">
       <div class="eyebrow">POR QUÉ NOSOTROS</div>
@@ -637,7 +692,7 @@
 
 <!-- ================= LOGROS ================= -->
 <!-- Nota para Daniel: cuando tengas testimonios reales de clientes, podemos reintroducir esa sección junto a esta o en su lugar. -->
-<section id="logros" class="section-pad band-light">
+<section id="logros" class="section-pad">
   <div class="wrap">
     <div class="section-head reveal">
       <div class="eyebrow">PLANEO EN NÚMEROS</div>
@@ -689,6 +744,7 @@
         <h5>Navegación</h5>
         <a href="#servicios">Servicios</a>
         <a href="#proceso">Cómo trabajamos</a>
+        <a href="#score-planeo">Nuestro Score</a>
         <a href="#diferenciadores">Por qué nosotros</a>
         <a href="#logros">Logros</a>
       </div>
@@ -769,7 +825,7 @@
       if(!start) start = ts;
       var progress = Math.min((ts - start) / duration, 1);
       var eased = 1 - Math.pow(1 - progress, 3);
-      var val = (target * eased).toFixed(1);
+      var val = Math.round(target * eased);
       el.childNodes[0].nodeValue = val + suffix;
       if(progress < 1){ requestAnimationFrame(step); }
     }
