@@ -280,23 +280,33 @@ var ENUNCIADOS = {
 };
 var EXTRA = {RE2:{v:'ND',t:'No tengo deuda'}, G1:{v:'JOVEN',t:'Aún no tengo 2 años de operación'}};
 var HALLAZGO = {
-  L1:'No tienes claro si tu caja ha estado en aprietos.',
-  L2:'No sabes cuánto aguantaría tu caja si tus clientes se atrasan.',
-  R1:'No tienes claro si tu margen es sano para tu negocio.',
-  R2:'No conoces los márgenes por producto, servicio o cliente.',
-  RE1:'No tienes claro si el negocio funcionaría sin ti un mes.',
-  RE2:'No tienes claro si tus deudas se pagan con la operación.',
-  E1:'No tienes claro cuánto dinero está inmovilizado.',
-  E2:'No tienes claro si tus costos fijos crecen más rápido que tus ventas.',
-  G1:'No tienes a la mano cómo evolucionaron tus ventas.',
-  G2:'No tienes claro cuánto de tus ingresos es recurrente.'
+  L1:'Tensiones de caja en los últimos tres meses.',
+  L2:'Capacidad de la caja ante un atraso de cobros de 30 días.',
+  R1:'Nivel de margen frente a tu tipo de negocio.',
+  R2:'Rentabilidad por producto, servicio o cliente.',
+  RE1:'Continuidad de la operación en tu ausencia.',
+  RE2:'Capacidad de pago de la deuda con la operación.',
+  E1:'Dinero inmovilizado en inventario, activos o cartera.',
+  E2:'Evolución de los costos fijos frente a las ventas.',
+  G1:'Evolución de las ventas en los últimos dos años.',
+  G2:'Proporción de ingresos recurrentes.'
 };
 var LECTURA = { // [verde, ámbar, rojo]
-  L:['Tu caja aguanta los golpes del día a día.','Tu caja funciona, pero con poco margen ante un imprevisto.','Tu caja se siente ajustada. Es el área donde más rápido se nota un problema.'],
-  R:['Tus márgenes son sanos y claros.','Tus márgenes son aceptables, pero hay espacio para mejorarlos o verlos con más claridad.','Tus márgenes o su claridad merecen una revisión prioritaria.'],
-  RE:['Tu negocio y tu deuda se sostienen sin depender solo de ti.','Hay cierta dependencia del dueño o presión de deuda que conviene ir ordenando.','Hay dependencia del dueño o presión de deuda que conviene ordenar pronto.'],
-  E:['Tus recursos trabajan para ti.','Parte de tu dinero o de tus costos fijos podría rendir más.','Puede haber dinero o costos fijos que no están rindiendo. Conviene revisarlo pronto.'],
-  G:['Tu negocio crece y se sostiene.','Tu crecimiento o la recurrencia de tus ingresos es aceptable, pero puede fortalecerse.','Tu crecimiento o la recurrencia de tus ingresos merecen atención prioritaria.']
+  L:['Tu caja cubre las obligaciones del mes y tiene margen para absorber atrasos de cobro sin recurrir a financiamiento de emergencia.',
+     'Tu caja cubre la operación, pero con poco margen: un atraso en los cobros o un gasto imprevisto podría obligarte a buscar financiamiento de corto plazo.',
+     'Tu caja opera con tensión. Es el área que más rápido afecta el pago de nómina, proveedores e impuestos, y la primera que conviene ordenar.'],
+  R:['Tus márgenes son adecuados para tu tipo de negocio y sabes qué productos, servicios o clientes generan mayor rentabilidad.',
+     'Tus márgenes son aceptables, aunque hay espacio para mejorarlos o para conocer con precisión qué productos, servicios o clientes los generan.',
+     'Tus márgenes requieren revisión prioritaria: son bajos para tu tipo de negocio, o no está claro qué productos, servicios o clientes generan utilidad y cuáles la consumen.'],
+  RE:['La operación no depende exclusivamente de ti y tu nivel de endeudamiento es manejable con lo que genera el negocio.',
+      'Existe una dependencia relevante de tu presencia o cierta presión de la deuda sobre la caja. Conviene ordenarlo antes de que limite el crecimiento.',
+      'La operación depende en gran medida de ti o la deuda exige más de lo que genera la operación. Es un riesgo estructural que además reduce el valor de tu empresa frente a un socio, un comprador o una entidad financiera.'],
+  E:['Tus recursos están bien utilizados: no hay dinero inmovilizado relevante y tus costos fijos crecen en línea con tus ventas.',
+     'Hay recursos que podrían rendir más, ya sea inventario de baja rotación, cartera vencida, activos sin uso o costos fijos que crecen más rápido que las ventas.',
+     'Una parte relevante de tu dinero está inmovilizada o tus costos fijos crecen más rápido que tus ventas. Esto resta caja y rentabilidad, y conviene corregirlo pronto.'],
+  G:['Tus ventas crecen y una parte importante de tus ingresos es recurrente, lo que da estabilidad y previsibilidad al negocio.',
+     'Tus ventas crecen de forma moderada o dependen en buena parte de ventas puntuales. Hay espacio para ganar estabilidad y previsibilidad.',
+     'Tus ventas no muestran un crecimiento claro o dependen principalmente de ventas puntuales. Esto dificulta planificar y sostener el negocio en el tiempo.']
 };
 function nivel(v){ return v<60 ? 2 : (v<=80 ? 1 : 0); } // 0 verde, 1 ámbar, 2 rojo
 var SECTORES=[['comercio','Comercio y distribución'],['servicios','Servicios profesionales'],['manufactura','Manufactura'],['construccion','Construcción y proyectos'],['agro','Agro'],['salud_educacion','Salud y educación'],['turismo_alimentacion','Turismo y alimentación'],['tecnologia','Tecnología'],['otro','Otro']];
@@ -512,29 +522,41 @@ function avisoCritico(r){
   if(!r.alertas.length) return '';
   var al=r.alertas, caja=al.indexOf('L')>=0, otros=al.filter(function(k){return k!=='L';});
   var tit = al.length===1 ? 'Eje crítico: '+TITULOS[al[0]]+' ('+r.eje[al[0]].toFixed(1)+').' : 'Ejes críticos: '+lista(nombres(al))+'.';
-  var cuerpo=[];
+  var frase;
   if(al.length===1){
-    cuerpo.push(caja ? 'Esta área puede comprometer tu operación en cuestión de semanas si no se atiende.' : 'Esta área está frenando el valor de tu empresa más de lo que parece.');
+    frase = caja ? 'la caja podría comprometer la operación en el corto plazo si no se atiende' : 'esta área está restando valor a tu empresa de forma significativa';
   } else {
-    if(caja) cuerpo.push('Caja puede comprometer tu operación en cuestión de semanas si no se atiende.');
-    if(otros.length) cuerpo.push(lista(nombres(otros))+(otros.length>1?' están frenando':' está frenando')+' el valor de tu empresa más de lo que parece.');
+    var partes=[];
+    if(caja) partes.push('la caja podría comprometer la operación en el corto plazo si no se atiende');
+    if(otros.length) partes.push(lista(nombres(otros))+(otros.length>1?' están restando':' está restando')+' valor a tu empresa de forma significativa');
+    frase = partes.join(', y ');
   }
-  cuerpo.push('Conviene actuar pronto: es lo primero que revisaremos contigo en tu sesión sin costo.');
-  return '<div class="crit"><p><b>'+tit+'</b> '+cuerpo.join(' ')+'</p></div>';
+  var cuerpo = 'Según tus respuestas, '+frase+'. Es lo primero que revisaremos contigo en la sesión sin costo.';
+  return '<div class="crit"><p><b>'+tit+'</b> '+cuerpo+'</p></div>';
 }
 function recomendacion(r){
   var rec=r.recomendacion, o=nombres(rec.otrosEjes), t='';
   if(rec.tipo==='CICLO_CAJA'){
-    t='Lo primero que te sugerimos es un <b>Programa de Optimización de Ciclo de Caja</b>: ordenar cobros, pagos y colchón de caja para darle aire a tu negocio.'+(o.length?' Empezaríamos por la caja y, después, '+lista(o)+'.':'');
+    t='Te recomendamos empezar por un <b>Programa de Optimización de Ciclo de Caja</b>: ordenar cobros, pagos e inventario, y definir un nivel mínimo de caja que proteja la operación.'+(o.length?' Una vez estabilizada la caja, trabajaríamos en '+lista(o)+'.':'');
+  } else if(nivel(r.eje.L)===0){
+    t='Tu caja está sana, lo que permite enfocarse en la rentabilidad y el crecimiento. Te recomendamos un servicio de <b>CFO Externo</b> '+(o.length?'que trabaje contigo en '+lista(o):'que te acompañe a sostener estos resultados e identificar nuevas oportunidades')+'.';
   } else {
-    t='Tu caja está en buen pie. Lo que más valor te daría es un <b>CFO Externo</b>, que trabaje contigo sobre '+(o.length?lista(o):'mantener y crecer lo que ya funciona')+'.';
+    t='Tu caja no presenta un riesgo inmediato, aunque opera con poco margen. Te recomendamos un servicio de <b>CFO Externo</b> que trabaje contigo en fortalecerla'+(o.length?' y en '+lista(o):'')+'.';
   }
-  if(rec.valoracion) t+=' Como has considerado una venta, un socio o una sucesión, también te recomendamos una <b>Valoración '+(rec.valoracion==='COMPLETA'?'Completa':'Express')+'</b> para conocer cuánto vale hoy tu empresa.';
+  if(rec.valoracion){
+    var val='<b>Valoración '+(rec.valoracion==='COMPLETA'?'Completa':'Express')+'</b>';
+    t+= st.ctx.C1==='SI'
+      ? ' Dado que tienes conversaciones en curso de venta, entrada de socio o sucesión, te recomendamos además una '+val+' para negociar con una referencia objetiva del valor de tu empresa.'
+      : ' Como has considerado una venta, la entrada de un socio o una sucesión, te recomendamos además una '+val+' para conocer cuánto vale hoy tu empresa y qué factores lo determinan.';
+  }
   return '<div class="rec"><p style="margin:0">'+t+'</p></div>';
 }
 function pResultado(){
   var r=st.result, ps=r.planeoScore;
-  var atn = r.atencion.length ? 'Áreas en atención: '+lista(nombres(r.atencion))+'.' : 'Tus cinco áreas están en buen nivel.';
+  var ambar = S.EJES.filter(function(k){return nivel(r.eje[k])===1;});
+  var atn = r.atencion.length ? 'Áreas que requieren atención: '+lista(nombres(r.atencion))+'.'
+          : (ambar.length ? 'Ninguna área está en zona de riesgo. '+lista(nombres(ambar))+(ambar.length>1?' tienen':' tiene')+' espacio de mejora.'
+          : 'Tus cinco áreas muestran una situación sólida.');
   var hayRojo=S.EJES.some(function(k){return nivel(r.eje[k])===2;});
   var nvT=nivel(ps); if(nvT===0 && hayRojo) nvT=1; // el total no puede ser verde si hay un eje en rojo
   var etiqueta=['Fuerte','Aceptable','Débil'][nvT], colT=['var(--green)','var(--amber)','var(--red)'][nvT];
@@ -544,17 +566,18 @@ function pResultado(){
   }).join('');
   var ns='';
   if(r.noSabe.length){
-    ns='<div class="card"><b>Respondiste «No lo sé» en '+r.noSabe.length+(r.noSabe.length===1?' afirmación':' afirmaciones')+'.</b> No es un error: es una señal. Saber esto con precisión es parte de lo que ordenamos con tus documentos.<ul>'+
+    var uno = r.noSabe.length===1;
+    ns='<div class="card"><b>Respondiste «No lo sé» en '+r.noSabe.length+(uno?' afirmación':' afirmaciones')+'.</b> Esto también es un hallazgo: no contar con '+(uno?'este dato':'estos datos')+' limita la toma de decisiones. '+(uno?'Lo':'Los')+' precisamos contigo a partir de tus documentos. '+(uno?'Tema':'Temas')+' sin visibilidad:<ul>'+
       r.noSabe.map(function(c){return '<li>'+HALLAZGO[c]+'</li>';}).join('')+'</ul></div>';
   }
   var href='#';
   if(CONFIG.BOOKINGS_URL) href=CONFIG.BOOKINGS_URL+(CONFIG.BOOKINGS_URL.indexOf('?')>=0?'&':'?')+'utm_content='+encodeURIComponent(r.recomendacion.utmContent);
   show('<div class="score"><div class="lab">Planeo Score</div><div class="num" id="num">'+(reduce?ps.toFixed(1):'30.0')+'</div><div class="nivel"><i style="background:'+colT+'"></i>'+etiqueta+'</div></div>'+
     '<p class="attn">'+atn+'</p>'+radar(r)+avisoCritico(r)+ejes+ns+recomendacion(r)+
-    '<div class="cta"><h2>Revisemos estas brechas juntos.</h2><p>Agenda una sesión de 30 minutos, sin costo, con un CFO de Planeo. Parte de tu resultado: ya tendremos tus respuestas a la mano.</p>'+
+    '<div class="cta"><h2>Conversemos sobre tu resultado.</h2><p>Agenda una sesión de 30 minutos, sin costo, con un CFO de Planeo. Llegaremos con tus respuestas revisadas para enfocarnos en lo que más impacto tiene en tu empresa.</p>'+
     '<a class="btn block" id="cta" href="'+h(href)+'" target="_blank" rel="noopener">Agendar mi sesión de 30 minutos</a>'+
     (CONFIG.BOOKINGS_URL?'':'<p class="note" style="color:#CDBBE3;margin:10px 0 0">(Demostración: falta configurar el enlace de Bookings.)</p>')+'</div>'+
-    '<p class="disc">Esta versión del Planeo Score es una autoevaluación (diagnóstico) basada en tus respuestas. No es una valoración de tu empresa ni una predicción. Con tu información financiera detallada, el equipo de Planeo puede calcular tu Planeo Score Pro, que se basa en métricas objetivas y te da una visión más clara y profunda de tu situación financiera actual.</p>');
+    '<p class="disc">Este Planeo Score es una autoevaluación basada en tus respuestas. No constituye una valoración de tu empresa ni una predicción de resultados. Con tu información financiera, el equipo de Planeo puede calcular el Planeo Score Pro, basado en métricas objetivas, para obtener una visión más precisa y completa de tu situación financiera.</p>');
   var cta=document.getElementById('cta');
   if(cta && CONFIG.API_URL) cta.addEventListener('click',function(){ post('/diagnostico/clic',{sesionId:st.sid},6000).catch(function(){}); });
   if(!reduce){
