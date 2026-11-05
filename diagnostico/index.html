@@ -550,6 +550,8 @@ function pResultado(){
     '<a class="btn block" id="cta" href="'+h(href)+'" target="_blank" rel="noopener">Agendar mi sesión de 30 minutos</a>'+
     (CONFIG.BOOKINGS_URL?'':'<p class="note" style="color:#CDBBE3;margin:10px 0 0">(Demostración: falta configurar el enlace de Bookings.)</p>')+'</div>'+
     '<p class="disc">Esta versión del Planeo Score es una autoevaluación (diagnóstico) basada en tus respuestas. No es una valoración de tu empresa ni una predicción. Con tu información financiera detallada, el equipo de Planeo puede calcular tu Planeo Score Pro, que se basa en métricas objetivas y te da una visión más clara y profunda de tu situación financiera actual.</p>');
+  var cta=document.getElementById('cta');
+  if(cta && CONFIG.API_URL) cta.addEventListener('click',function(){ post('/diagnostico/clic',{sesionId:st.sid},6000).catch(function(){}); });
   if(!reduce){
     var t0=null, el=document.getElementById('num');
     (function paso(t){ if(!t0)t0=t; var k=Math.min(1,(t-t0)/900), e=1-Math.pow(1-k,3);
