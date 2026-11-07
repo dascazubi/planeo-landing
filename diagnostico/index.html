@@ -125,7 +125,7 @@ input:focus,.opt:focus-visible,.chip:focus-visible,.btn:focus-visible,.ns:focus-
 })(typeof self !== 'undefined' ? self : this, function () {
   'use strict';
 
-  var VERSION_METODOLOGIA = 'v26';
+  var VERSION_METODOLOGIA = 'v27';
   var VERSION_FORMULARIO = 'v1';
 
   var EJES = ['L', 'R', 'RE', 'E', 'G'];
@@ -217,7 +217,8 @@ input:focus,.opt:focus-visible,.chip:focus-visible,.btn:focus-visible,.ns:focus-
 
     var valoracion = null;
     if (contexto.C1 && contexto.C1 !== 'NO') {
-      valoracion = (contexto.C2 === 'BAJA' || !contexto.C2) ? 'EXPRESS' : 'COMPLETA';
+      // Comercial v18: C1 define la necesidad y C2 la viabilidad. Completa solo con conversación en curso y contabilidad al día.
+      valoracion = (contexto.C1 === 'SI' && contexto.C2 === 'ALTA') ? 'COMPLETA' : 'EXPRESS';
     }
 
     var utm = tipo === 'CICLO_CAJA' ? 'ciclo-caja' : 'cfo-externo';
@@ -536,15 +537,20 @@ function avisoCritico(r){
 }
 function recomendacion(r){
   var rec=r.recomendacion, o=nombres(rec.otrosEjes), t='';
+  var val = rec.valoracion ? '<b>Valoración '+(rec.valoracion==='COMPLETA'?'Completa':'Express')+'</b>' : '';
   if(rec.tipo==='CICLO_CAJA'){
     t='Te recomendamos empezar por un <b>Programa de Optimización de Ciclo de Caja</b>: ordenar cobros, pagos e inventario, y definir un nivel mínimo de caja que proteja la operación.'+(o.length?' Una vez estabilizada la caja, trabajaríamos en '+lista(o)+'.':'');
+    // Comercial v18: con la caja en rojo, la valoración va en secuencia, después de estabilizar la caja
+    if(val) t+= o.length
+      ? ' Después, te recomendamos una '+val+': así el valor de tu empresa reflejará una operación ordenada.'
+      : ' Una vez estabilizada la caja, te recomendamos una '+val+': así el valor de tu empresa reflejará una operación ordenada.';
+    return '<div class="rec"><p style="margin:0">'+t+'</p></div>';
   } else if(nivel(r.eje.L)===0){
     t='Tu caja está sana, lo que permite enfocarse en la rentabilidad y el crecimiento. Te recomendamos un servicio de <b>CFO Externo</b> '+(o.length?'que trabaje contigo en '+lista(o):'que te acompañe a sostener estos resultados e identificar nuevas oportunidades')+'.';
   } else {
     t='Tu caja no presenta un riesgo inmediato, aunque opera con poco margen. Te recomendamos un servicio de <b>CFO Externo</b> que trabaje contigo en fortalecerla'+(o.length?' y en '+lista(o):'')+'.';
   }
-  if(rec.valoracion){
-    var val='<b>Valoración '+(rec.valoracion==='COMPLETA'?'Completa':'Express')+'</b>';
+  if(val){
     t+= st.ctx.C1==='SI'
       ? ' Dado que tienes conversaciones en curso de venta, entrada de socio o sucesión, te recomendamos además una '+val+' para negociar con una referencia objetiva del valor de tu empresa.'
       : ' Como has considerado una venta, la entrada de un socio o una sucesión, te recomendamos además una '+val+' para conocer cuánto vale hoy tu empresa y qué factores lo determinan.';
